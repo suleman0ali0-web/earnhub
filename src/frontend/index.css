@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* EarnHub — Deep Emerald + Burnished Gold */
+    /* Dark-first palette */
+    --background: 0.12 0.015 160;
+    --foreground: 0.94 0.012 90;
+    --card: 0.15 0.018 160;
+    --card-foreground: 0.94 0.012 90;
+    --popover: 0.17 0.02 160;
+    --popover-foreground: 0.94 0.012 90;
+
+    /* Emerald green primary */
+    --primary: 0.62 0.17 158;
+    --primary-foreground: 0.08 0.015 160;
+
+    /* Muted emerald secondary */
+    --secondary: 0.2 0.03 160;
+    --secondary-foreground: 0.85 0.02 100;
+
+    --muted: 0.18 0.02 160;
+    --muted-foreground: 0.6 0.02 160;
+
+    /* Gold accent */
+    --accent: 0.78 0.14 85;
+    --accent-foreground: 0.1 0.02 80;
+
+    --destructive: 0.62 0.2 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.25 0.025 160;
+    --input: 0.22 0.025 160;
+    --ring: 0.62 0.17 158;
+
+    --chart-1: 0.62 0.17 158;
+    --chart-2: 0.78 0.14 85;
+    --chart-3: 0.55 0.15 200;
+    --chart-4: 0.7 0.18 55;
+    --chart-5: 0.5 0.12 280;
+
+    --sidebar: 0.13 0.016 160;
+    --sidebar-foreground: 0.94 0.012 90;
+    --sidebar-primary: 0.62 0.17 158;
+    --sidebar-primary-foreground: 0.08 0.015 160;
+    --sidebar-accent: 0.2 0.03 160;
+    --sidebar-accent-foreground: 0.85 0.02 100;
+    --sidebar-border: 0.25 0.025 160;
+    --sidebar-ring: 0.62 0.17 158;
+
+    /* Custom tokens */
+    --gold: 0.78 0.14 85;
+    --gold-bright: 0.84 0.16 88;
+    --emerald: 0.62 0.17 158;
+    --emerald-bright: 0.7 0.2 158;
+    --surface-1: 0.15 0.018 160;
+    --surface-2: 0.18 0.022 160;
+    --surface-3: 0.22 0.028 160;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .text-emerald {
+    color: oklch(var(--emerald));
+  }
+
+  .bg-surface-1 {
+    background-color: oklch(var(--surface-1));
+  }
+
+  .bg-surface-2 {
+    background-color: oklch(var(--surface-2));
+  }
+
+  .bg-surface-3 {
+    background-color: oklch(var(--surface-3));
+  }
+
+  .border-gold {
+    border-color: oklch(var(--gold) / 0.4);
+  }
+
+  .border-emerald {
+    border-color: oklch(var(--emerald) / 0.4);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 0 24px oklch(var(--gold) / 0.15), 0 4px 12px oklch(0.08 0.01 160 / 0.4);
+  }
+
+  .shadow-emerald {
+    box-shadow: 0 0 24px oklch(var(--emerald) / 0.2), 0 4px 12px oklch(0.08 0.01 160 / 0.4);
+  }
+
+  .glow-gold {
+    text-shadow: 0 0 20px oklch(var(--gold) / 0.5);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(var(--gold)) 0%, oklch(var(--gold-bright)) 100%);
+  }
+
+  .gradient-emerald {
+    background: linear-gradient(135deg, oklch(var(--emerald)) 0%, oklch(var(--emerald-bright)) 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(145deg, oklch(var(--surface-1)) 0%, oklch(var(--surface-2)) 100%);
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
